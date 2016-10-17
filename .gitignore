@@ -37,6 +37,8 @@ vignettes/*.pdf
 # Data
 data/*
 output/*
+output/payments/*
+
 
 # OSX
 *.DS_Store
