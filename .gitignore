@@ -35,8 +35,8 @@ vignettes/*.pdf
 *.knit.md
 
 # Data
-data/
-output/
+data/*
+output/*
 
 # OSX
 *.DS_Store
