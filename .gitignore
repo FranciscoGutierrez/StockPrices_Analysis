@@ -35,9 +35,9 @@ vignettes/*.pdf
 *.knit.md
 
 # Data
-data/*
-output/*
-output/payments/*
+**/data/**
+**/output/**
+**/output/payments/**
 
 
 # OSX
