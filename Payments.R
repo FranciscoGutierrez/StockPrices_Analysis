@@ -31,6 +31,7 @@ for (user in split.data) {
     if (user.num.correct > 7 ) user.payment <- 1.5
     if (user.num.correct > 10) user.payment <- 3.0 
     # output
+    # checking if this is the latest study...
     if (user.timestamp > 1476000000000) {
         ls.names     <- c(ls.names,     toString(user.id))
         ls.viz       <- c(ls.viz,       toString(user.viz))
