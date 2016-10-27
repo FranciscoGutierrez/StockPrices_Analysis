@@ -1,6 +1,7 @@
 # References: 
 ## https://personality-project.org/r/r.guide.html#oneway
 ## http://www.gardenersown.co.uk/education/lectures/r/anova.htm
+## http://www2.lv.psu.edu/jxm57/irp/chisquar.html
 
 study.dots   <- read.csv("data/study_dots.csv") 
 study.charts <- read.csv("data/study_charts.csv") 
