@@ -219,23 +219,146 @@ boxplot(dots.boxplot.easy$ls.speed,
                       mean(series.boxplot.hard$ls.accuracy)),
                pch="+", cex = 2)
         
-###
-speed <- c()
-viz   <- c()
-###
-speed <- c(speed, charts.boxplot.easy$ls.speed)
-viz   <- c(viz, as.vector(charts.boxplot.easy$ls.viz))
-###
-speed <- c(speed, series.boxplot.easy$ls.speed)
-viz   <- c(viz, as.vector(series.boxplot.easy$ls.viz))
-###
-speed <- c(speed, dots.boxplot.easy$ls.speed)
-viz   <- c(viz, as.vector(dots.boxplot.easy$ls.viz))
+#############################################################
+easy.speed <- c()
+easy.viz   <- c()
+easy.speed <- c(easy.speed, charts.boxplot.easy$ls.speed)
+easy.viz   <- c(easy.viz,   as.vector(charts.boxplot.easy$ls.viz))
+easy.speed <- c(easy.speed, series.boxplot.easy$ls.speed)
+easy.viz   <- c(easy.viz,   as.vector(series.boxplot.easy$ls.viz))
+easy.speed <- c(easy.speed, dots.boxplot.easy$ls.speed)
+easy.viz   <- c(easy.viz,   as.vector(dots.boxplot.easy$ls.viz))
+#############################################################
+medium.speed <- c()
+medium.viz   <- c()
+medium.speed <- c(medium.speed, charts.boxplot.medium$ls.speed)
+medium.viz   <- c(medium.viz,   as.vector(charts.boxplot.medium$ls.viz))
+medium.speed <- c(medium.speed, series.boxplot.medium$ls.speed)
+medium.viz   <- c(medium.viz,   as.vector(series.boxplot.medium$ls.viz))
+medium.speed <- c(medium.speed, dots.boxplot.medium$ls.speed)
+medium.viz   <- c(medium.viz,   as.vector(dots.boxplot.medium$ls.viz))
+#############################################################
+hard.speed <- c()
+hard.viz   <- c()
+hard.speed <- c(hard.speed, charts.boxplot.hard$ls.speed)
+hard.viz   <- c(hard.viz,   as.vector(charts.boxplot.hard$ls.viz))
+hard.speed <- c(hard.speed, series.boxplot.hard$ls.speed)
+hard.viz   <- c(hard.viz,   as.vector(series.boxplot.hard$ls.viz))
+hard.speed <- c(hard.speed, dots.boxplot.hard$ls.speed)
+hard.viz   <- c(hard.viz,   as.vector(dots.boxplot.hard$ls.viz))
+#############################################################
+easy.actions <- c()
+easy.viz     <- c()
+easy.actions <- c(easy.actions, charts.boxplot.easy$ls.actions)
+easy.viz     <- c(easy.viz,     as.vector(charts.boxplot.easy$ls.viz))
+easy.actions <- c(easy.actions, series.boxplot.easy$ls.actions)
+easy.viz     <- c(easy.viz,     as.vector(series.boxplot.easy$ls.viz))
+easy.actions <- c(easy.actions, dots.boxplot.easy$ls.actions)
+easy.viz     <- c(easy.viz,     as.vector(dots.boxplot.easy$ls.viz))
+#############################################################
+medium.actions <- c()
+medium.viz     <- c()
+medium.actions <- c(medium.actions, charts.boxplot.medium$ls.actions)
+medium.viz     <- c(medium.viz,     as.vector(charts.boxplot.medium$ls.viz))
+medium.actions <- c(medium.actions, series.boxplot.medium$ls.actions)
+medium.viz     <- c(medium.viz,     as.vector(series.boxplot.medium$ls.viz))
+medium.actions <- c(medium.actions, dots.boxplot.medium$ls.actions)
+medium.viz     <- c(medium.viz,     as.vector(dots.boxplot.medium$ls.viz))
+#############################################################
+hard.actions <- c()
+hard.viz     <- c()
+hard.actions <- c(hard.actions, charts.boxplot.hard$ls.actions)
+hard.viz     <- c(hard.viz,     as.vector(charts.boxplot.hard$ls.viz))
+hard.actions <- c(hard.actions, series.boxplot.hard$ls.actions)
+hard.viz     <- c(hard.viz,     as.vector(series.boxplot.hard$ls.viz))
+hard.actions <- c(hard.actions, dots.boxplot.hard$ls.actions)
+hard.viz     <- c(hard.viz,     as.vector(dots.boxplot.hard$ls.viz))
+#############################################################
+easy.accuracy <- c()
+easy.viz      <- c()
+easy.accuracy <- c(easy.accuracy, charts.boxplot.easy$ls.accuracy)
+easy.viz      <- c(easy.viz,      as.vector(charts.boxplot.easy$ls.viz))
+easy.accuracy <- c(easy.accuracy, series.boxplot.easy$ls.accuracy)
+easy.viz      <- c(easy.viz,      as.vector(series.boxplot.easy$ls.viz))
+easy.accuracy <- c(easy.accuracy, dots.boxplot.easy$ls.accuracy)
+easy.viz      <- c(easy.viz,      as.vector(dots.boxplot.easy$ls.viz))
+#############################################################
+medium.accuracy <- c()
+medium.viz      <- c()
+medium.accuracy <- c(medium.accuracy, charts.boxplot.medium$ls.accuracy)
+medium.viz      <- c(medium.viz,      as.vector(charts.boxplot.medium$ls.viz))
+medium.accuracy <- c(medium.accuracy, series.boxplot.medium$ls.accuracy)
+medium.viz      <- c(medium.viz,      as.vector(series.boxplot.medium$ls.viz))
+medium.accuracy <- c(medium.accuracy, dots.boxplot.medium$ls.accuracy)
+medium.viz      <- c(medium.viz,      as.vector(dots.boxplot.medium$ls.viz))
+#############################################################
+hard.accuracy <- c()
+hard.viz      <- c()
+hard.accuracy <- c(hard.accuracy, charts.boxplot.hard$ls.accuracy)
+hard.viz      <- c(hard.viz,      as.vector(charts.boxplot.hard$ls.viz))
+hard.accuracy <- c(hard.accuracy, series.boxplot.hard$ls.accuracy)
+hard.viz      <- c(hard.viz,      as.vector(series.boxplot.hard$ls.viz))
+hard.accuracy <- c(hard.accuracy, dots.boxplot.hard$ls.accuracy)
+hard.viz      <- c(hard.viz,      as.vector(dots.boxplot.hard$ls.viz))
+#############################################################
 
-speed.viz <- data.frame(viz, speed) 
+df.speed.easy   <- data.frame(easy.viz,   easy.speed) 
+df.speed.medium <- data.frame(medium.viz, medium.speed) 
+df.speed.hard   <- data.frame(hard.viz,   hard.speed) 
 
-speed.model <- lm(speed ~ viz, data=speed.viz)
-        
+df.actions.easy   <- data.frame(easy.viz,   easy.actions) 
+df.actions.medium <- data.frame(medium.viz, medium.actions) 
+df.actions.hard   <- data.frame(hard.viz,   hard.actions) 
+
+df.accuracy.easy   <- data.frame(easy.viz,   easy.accuracy) 
+df.accuracy.medium <- data.frame(medium.viz, medium.accuracy) 
+df.accuracy.hard   <- data.frame(hard.viz,   hard.accuracy) 
+
+speed.easy.anova     <- aov(easy.speed ~ easy.viz, data=df.speed.easy)
+speed.easy.kruskal   <- kruskal.test(easy.speed ~ easy.viz, data = df.speed.easy)
+speed.medium.anova   <- aov(medium.speed ~ medium.viz, data=df.speed.medium)
+speed.medium.kruskal <- kruskal.test(medium.speed ~ medium.viz, data = df.speed.medium)
+speed.hard.anova     <- aov(hard.speed ~ hard.viz, data=df.speed.hard)
+speed.hard.kruskal   <- kruskal.test(hard.speed ~ hard.viz, data = df.speed.hard)
+
+actions.easy.anova     <- aov(easy.actions ~ easy.viz, data=df.actions.easy)
+actions.easy.kruskal   <- kruskal.test(easy.actions ~ easy.viz, data = df.actions.easy)
+actions.medium.anova   <- aov(medium.actions ~ medium.viz, data=df.actions.medium)
+actions.medium.kruskal <- kruskal.test(medium.actions ~ medium.viz, data = df.actions.medium)
+actions.hard.anova     <- aov(hard.actions ~ hard.viz, data=df.actions.hard)
+actions.hard.kruskal   <- kruskal.test(hard.actions ~ hard.viz, data = df.actions.hard)
+
+accuracy.easy.anova     <- aov(easy.accuracy ~ easy.viz, data=df.accuracy.easy)
+accuracy.easy.kruskal   <- kruskal.test(easy.accuracy ~ easy.viz, data = df.accuracy.easy)
+accuracy.medium.anova   <- aov(medium.accuracy ~ medium.viz, data=df.accuracy.medium)
+accuracy.medium.kruskal <- kruskal.test(medium.accuracy ~ medium.viz, data = df.accuracy.medium)
+accuracy.hard.anova     <- aov(hard.accuracy ~ hard.viz, data=df.accuracy.hard)
+accuracy.hard.kruskal   <- kruskal.test(hard.accuracy ~ hard.viz, data = df.accuracy.hard)
+
+# Mann-Whitney test... Not useful, since we have 3 variables. 
+#speed.easy.whitney <- wilcox.test(speed ~ viz, data=speed.viz) 
+# Bonferroni-Holm correction, useful...
+# p.adjust(tukey.speed.easy$easy.viz[,4], method = "holm")
+# p.adjust(tukey.speed.medium$medium.viz[,4], method = "holm")
+# p.adjust(tukey.speed.hard$hard.viz[,4], method = "holm")
+###
+# Post Hoc Study...
+###
+tukey.speed.easy   <- TukeyHSD(speed.easy.anova)
+tukey.speed.medium <- TukeyHSD(speed.medium.anova)
+tukey.speed.hard   <- TukeyHSD(speed.hard.anova)
+
+tukey.actions.easy   <- TukeyHSD(actions.easy.anova)
+tukey.actions.medium <- TukeyHSD(actions.medium.anova)
+tukey.actions.hard   <- TukeyHSD(actions.hard.anova)
+
+tukey.accuracy.easy   <- TukeyHSD(accuracy.easy.anova)
+tukey.accuracy.medium <- TukeyHSD(accuracy.medium.anova)
+tukey.accuracy.hard   <- TukeyHSD(accuracy.hard.anova)
+
+#par(bty='n', mfrow=c(1,1), las=1)
+#plot(tukey)
+
 #series.boxplot.medium$ls.speed   
 #charts.boxplot.medium$ls.speed   
 #dots.boxplot.medium$ls.speed   
