@@ -1,3 +1,7 @@
+# References: 
+## https://personality-project.org/r/r.guide.html#oneway
+## http://www.gardenersown.co.uk/education/lectures/r/anova.htm
+
 study.dots   <- read.csv("data/study_dots.csv") 
 study.charts <- read.csv("data/study_charts.csv") 
 study.series <- read.csv("data/study_series.csv") 
@@ -335,6 +339,7 @@ accuracy.medium.kruskal <- kruskal.test(medium.accuracy ~ medium.viz, data = df.
 accuracy.hard.anova     <- aov(hard.accuracy ~ hard.viz, data=df.accuracy.hard)
 accuracy.hard.kruskal   <- kruskal.test(hard.accuracy ~ hard.viz, data = df.accuracy.hard)
 
+# T-test is also not viable, since we have 3 variables
 # Mann-Whitney test... Not useful, since we have 3 variables. 
 #speed.easy.whitney <- wilcox.test(speed ~ viz, data=speed.viz) 
 # Bonferroni-Holm correction, useful...
