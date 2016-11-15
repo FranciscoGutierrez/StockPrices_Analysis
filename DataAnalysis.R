@@ -6,12 +6,22 @@ library(car)
 ## http://www.gardenersown.co.uk/education/lectures/r/anova.htm
 ## http://www2.lv.psu.edu/jxm57/irp/chisquar.html
 
-study.dots   <- read.csv("data/study_dots.csv") 
-study.charts <- read.csv("data/study_charts.csv") 
-study.series <- read.csv("data/study_series.csv") 
-qf.charts    <- read.csv("data/qf_charts.csv") 
-qf.dots      <- read.csv("data/qf_dots.csv") 
-qf.series    <- read.csv("data/qf_series.csv") 
+
+#### First Study
+# study.dots   <- read.csv("data/s1_dots.csv")
+# study.charts <- read.csv("data/s1_charts.csv")
+# study.series <- read.csv("data/s1_maps.csv")
+# qf.charts    <- read.csv("data/qf1_charts.csv")
+# qf.dots      <- read.csv("data/qf1_dots.csv")
+# qf.series    <- read.csv("data/qf1_maps.csv")
+
+#### Second Study
+study.dots   <- read.csv("data/s2_dots.csv")
+study.charts <- read.csv("data/s2_charts.csv")
+study.series <- read.csv("data/s2_series.csv")
+qf.charts    <- read.csv("data/qf2_charts.csv")
+qf.dots      <- read.csv("data/qf2_dots.csv")
+qf.series    <- read.csv("data/qf2_series.csv")
 
 # <Questions>
 # Easy  : 1,4,7,10
@@ -149,108 +159,108 @@ charts.boxplot.hard   <- create.boxplot(clean.study.charts, "hard")
 series.boxplot.hard   <- create.boxplot(clean.study.series, "hard")
 dots.boxplot.hard     <- create.boxplot(clean.study.dots,   "hard")
 
-par(bty='n', mfrow=c(3,1), las=1)
+#par(bty='n', mfrow=c(3,1), las=1)
 #########
 # Speed #
 #########
-boxplot(dots.boxplot.easy$ls.speed, 
-        charts.boxplot.easy$ls.speed, 
-        series.boxplot.easy$ls.speed, 
-        dots.boxplot.medium$ls.speed, 
-        charts.boxplot.medium$ls.speed, 
-        series.boxplot.medium$ls.speed, 
-        dots.boxplot.hard$ls.speed, 
-        charts.boxplot.hard$ls.speed, 
-        series.boxplot.hard$ls.speed, 
-        ylim = c(0, 150), 
-        main="speed", col="aliceblue",
-        names = c("e.dots",
-                  "e.charts",
-                  "e.series",
-                  "m.dots",
-                  "m.charts",
-                  "m.series",
-                  "h.dots",
-                  "h.charts",
-                  "h.series"))
-        points(1:9, c(mean(dots.boxplot.easy$ls.speed),
-                      mean(charts.boxplot.easy$ls.speed),
-                      mean(series.boxplot.easy$ls.speed),
-                      mean(dots.boxplot.medium$ls.speed),
-                      mean(charts.boxplot.medium$ls.speed),
-                      mean(series.boxplot.medium$ls.speed),
-                      mean(dots.boxplot.hard$ls.speed),
-                      mean(charts.boxplot.hard$ls.speed),
-                      mean(series.boxplot.hard$ls.speed)),
-               pch="+", cex = 2)
+# boxplot(dots.boxplot.easy$ls.speed, 
+#         charts.boxplot.easy$ls.speed, 
+#         series.boxplot.easy$ls.speed, 
+#         dots.boxplot.medium$ls.speed, 
+#         charts.boxplot.medium$ls.speed, 
+#         series.boxplot.medium$ls.speed, 
+#         dots.boxplot.hard$ls.speed, 
+#         charts.boxplot.hard$ls.speed, 
+#         series.boxplot.hard$ls.speed, 
+#         ylim = c(0, 150), 
+#         main="speed", col="aliceblue",
+#         names = c("e.dots",
+#                   "e.charts",
+#                   "e.series",
+#                   "m.dots",
+#                   "m.charts",
+#                   "m.series",
+#                   "h.dots",
+#                   "h.charts",
+#                   "h.series"))
+#         points(1:9, c(mean(dots.boxplot.easy$ls.speed),
+#                       mean(charts.boxplot.easy$ls.speed),
+#                       mean(series.boxplot.easy$ls.speed),
+#                       mean(dots.boxplot.medium$ls.speed),
+#                       mean(charts.boxplot.medium$ls.speed),
+#                       mean(series.boxplot.medium$ls.speed),
+#                       mean(dots.boxplot.hard$ls.speed),
+#                       mean(charts.boxplot.hard$ls.speed),
+#                       mean(series.boxplot.hard$ls.speed)),
+#                pch="+", cex = 2)
 ###########
 # Actions #
 ###########
-
-        boxplot(dots.boxplot.easy$ls.actions, 
-                charts.boxplot.easy$ls.actions, 
-                series.boxplot.easy$ls.actions, 
-                dots.boxplot.medium$ls.actions, 
-                charts.boxplot.medium$ls.actions, 
-                series.boxplot.medium$ls.actions, 
-                dots.boxplot.hard$ls.actions, 
-                charts.boxplot.hard$ls.actions, 
-                series.boxplot.hard$ls.actions, 
-                ylim = c(0, 20), 
-                main="actions", col="aliceblue", 
-                names = c("e.dots",
-                          "e.charts",
-                          "e.series",
-                          "m.dots",
-                          "m.charts",
-                          "m.series",
-                          "h.dots",
-                          "h.charts",
-                          "h.series"))
-        points(1:9, c(mean(dots.boxplot.easy$ls.actions),
-                      mean(charts.boxplot.easy$ls.actions),
-                      mean(series.boxplot.easy$ls.actions),
-                      mean(dots.boxplot.medium$ls.actions),
-                      mean(charts.boxplot.medium$ls.actions),
-                      mean(series.boxplot.medium$ls.actions),
-                      mean(dots.boxplot.hard$ls.actions),
-                      mean(charts.boxplot.hard$ls.actions),
-                      mean(series.boxplot.hard$ls.actions)),
-               pch="+", cex = 2)
+# 
+#         boxplot(dots.boxplot.easy$ls.actions, 
+#                 charts.boxplot.easy$ls.actions, 
+#                 series.boxplot.easy$ls.actions, 
+#                 dots.boxplot.medium$ls.actions, 
+#                 charts.boxplot.medium$ls.actions, 
+#                 series.boxplot.medium$ls.actions, 
+#                 dots.boxplot.hard$ls.actions, 
+#                 charts.boxplot.hard$ls.actions, 
+#                 series.boxplot.hard$ls.actions, 
+#                 ylim = c(0, 20), 
+#                 main="actions", col="aliceblue", 
+#                 names = c("e.dots",
+#                           "e.charts",
+#                           "e.series",
+#                           "m.dots",
+#                           "m.charts",
+#                           "m.series",
+#                           "h.dots",
+#                           "h.charts",
+#                           "h.series"))
+#         points(1:9, c(mean(dots.boxplot.easy$ls.actions),
+#                       mean(charts.boxplot.easy$ls.actions),
+#                       mean(series.boxplot.easy$ls.actions),
+#                       mean(dots.boxplot.medium$ls.actions),
+#                       mean(charts.boxplot.medium$ls.actions),
+#                       mean(series.boxplot.medium$ls.actions),
+#                       mean(dots.boxplot.hard$ls.actions),
+#                       mean(charts.boxplot.hard$ls.actions),
+#                       mean(series.boxplot.hard$ls.actions)),
+#                pch="+", cex = 2)
         
 ############
 # Accuracy #
 ############
-        boxplot(dots.boxplot.easy$ls.accuracy, 
-                charts.boxplot.easy$ls.accuracy, 
-                series.boxplot.easy$ls.accuracy, 
-                dots.boxplot.medium$ls.accuracy, 
-                charts.boxplot.medium$ls.accuracy, 
-                series.boxplot.medium$ls.accuracy, 
-                dots.boxplot.hard$ls.accuracy, 
-                charts.boxplot.hard$ls.accuracy, 
-                series.boxplot.hard$ls.accuracy, 
-                ylim = c(0, max(series.boxplot.hard$ls.accuracy)), 
-                main="accuracy", col="aliceblue", 
-                names = c("e.dots",
-                          "e.charts",
-                          "e.series",
-                          "m.dots",
-                          "m.charts",
-                          "m.series",
-                          "h.dots",
-                          "h.charts",
-                          "h.series"))
-        points(1:9, c(mean(dots.boxplot.easy$ls.accuracy),
-                      mean(charts.boxplot.easy$ls.accuracy),
-                      mean(series.boxplot.easy$ls.accuracy),
-                      mean(dots.boxplot.medium$ls.accuracy),
-                      mean(charts.boxplot.medium$ls.accuracy),
-                      mean(series.boxplot.medium$ls.accuracy),
-                      mean(dots.boxplot.hard$ls.accuracy),
-                      mean(charts.boxplot.hard$ls.accuracy),
-                      mean(series.boxplot.hard$ls.accuracy)),
-               pch="+", cex = 2)
+        # boxplot(dots.boxplot.easy$ls.accuracy, 
+        #         charts.boxplot.easy$ls.accuracy, 
+        #         series.boxplot.easy$ls.accuracy, 
+        #         dots.boxplot.medium$ls.accuracy, 
+        #         charts.boxplot.medium$ls.accuracy, 
+        #         series.boxplot.medium$ls.accuracy, 
+        #         dots.boxplot.hard$ls.accuracy, 
+        #         charts.boxplot.hard$ls.accuracy, 
+        #         series.boxplot.hard$ls.accuracy, 
+        #         ylim = c(0, max(series.boxplot.hard$ls.accuracy)), 
+        #         main="accuracy", col="aliceblue", 
+        #         names = c("e.dots",
+        #                   "e.charts",
+        #                   "e.series",
+        #                   "m.dots",
+        #                   "m.charts",
+        #                   "m.series",
+        #                   "h.dots",
+        #                   "h.charts",
+        #                   "h.series"))
+        # points(1:9, c(mean(dots.boxplot.easy$ls.accuracy),
+        #               mean(charts.boxplot.easy$ls.accuracy),
+        #               mean(series.boxplot.easy$ls.accuracy),
+        #               mean(dots.boxplot.medium$ls.accuracy),
+        #               mean(charts.boxplot.medium$ls.accuracy),
+        #               mean(series.boxplot.medium$ls.accuracy),
+        #               mean(dots.boxplot.hard$ls.accuracy),
+        #               mean(charts.boxplot.hard$ls.accuracy),
+        #               mean(series.boxplot.hard$ls.accuracy)),
+        #        pch="+", cex = 2)
         
 #############################################################
 easy.speed <- c()
@@ -625,7 +635,7 @@ ggplot(e.act.int, aes(x = "Intuitive", y = mean)) +
     geom_errorbar(data = e.act.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
     geom_errorbar(data = e.act.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
     geom_errorbar(data = e.act.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
-    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    scale_y_continuous(expand = c(0, 0), limits = c(0,15)) +
     coord_flip() +
     labs(title ="", x = "Easy", y = "Actions")
 
@@ -636,7 +646,7 @@ ggplot(m.act.int, aes(x = "Intuitive", y = mean)) +
     geom_errorbar(data = m.act.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
     geom_errorbar(data = m.act.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
     geom_errorbar(data = m.act.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
-    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    scale_y_continuous(expand = c(0, 0), limits = c(0,15)) +
     coord_flip() +
     labs(title ="", x = "Medium", y = "Actions")
 
@@ -648,11 +658,11 @@ ggplot(h.act.int, aes(x = "Intuitive", y = mean)) +
     geom_errorbar(data = h.act.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
     geom_errorbar(data = h.act.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
     geom_errorbar(data = h.act.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
-    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    scale_y_continuous(expand = c(0, 0), limits = c(0,15)) +
     coord_flip() +
     labs(title ="", x = "Hard", y = "Actions")
 
-
+# ggsave("plot.png", width=3.5, height=1.5, dpi=300)
 
 e.speed.int <- conf.interval(series.boxplot.easy$ls.speed)
 e.speed.det <- conf.interval(charts.boxplot.easy$ls.speed)
@@ -664,4 +674,47 @@ h.speed.int <- conf.interval(series.boxplot.hard$ls.speed)
 h.speed.det <- conf.interval(charts.boxplot.hard$ls.speed)
 h.speed.com <- conf.interval(dots.boxplot.hard$ls.speed)   
 
+ggplot(e.speed.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = e.speed.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = e.speed.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = e.speed.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = e.speed.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = e.speed.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = e.speed.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,80)) +
+    coord_flip() +
+    labs(title ="", x = "Easy", y = "Speed")
 
+ggplot(m.speed.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = m.speed.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = m.speed.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = m.speed.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = m.speed.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = m.speed.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = m.speed.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,80)) +
+    coord_flip() +
+    labs(title ="", x = "Medium", y = "Speed")
+
+
+ggplot(h.speed.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = h.speed.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = h.speed.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = h.speed.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = h.speed.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = h.speed.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = h.speed.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,80)) +
+    coord_flip() +
+    labs(title ="", x = "Hard", y = "Speed")
+
+
+write.table(series.boxplot.easy   , "s2.series.boxplot.easy.csv"  , sep=",")
+write.table(charts.boxplot.easy   , "s2.charts.boxplot.easy.csv"  , sep=",")
+write.table(dots.boxplot.easy     , "s2.dots.boxplot.easy.csv"    , sep=",")
+write.table(series.boxplot.medium , "s2.series.boxplot.medium.csv", sep=",")
+write.table(charts.boxplot.medium , "s2.charts.boxplot.medium.csv", sep=",")
+write.table(dots.boxplot.medium   , "s2.dots.boxplot.medium.csv"  , sep=",")
+write.table(series.boxplot.hard   , "s2.series.boxplot.hard.csv"  , sep=",")
+write.table(charts.boxplot.hard   , "s2.charts.boxplot.hard.csv"  , sep=",") 
+write.table(dots.boxplot.hard     , "s2.dots.boxplot.hard.csv"    , sep=",")
