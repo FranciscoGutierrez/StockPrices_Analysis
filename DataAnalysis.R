@@ -1,3 +1,4 @@
+require(ggplot2)
 library(reshape2)
 library(car)
 # References: 
@@ -17,6 +18,31 @@ qf.series    <- read.csv("data/qf_series.csv")
 # Medium: 2,5,8,11
 # Hard  : 3,6,9,12
 # Add missing "difficulty" parameter.
+
+filter.users <- function(main.study, qf.study) {
+    split.study  <- split(main.study, main.study$userid)
+    some.users   <- c() 
+    for (user in split.study) {
+        some.users <- c(some.users, as.character(user$userid[1]))
+    }
+    some.users <- data.frame(some.users)
+    output <- main.study[ ! main.study$userid %in% some.users[1,], ]
+    return(output)
+}
+
+### Filter all datasets!!!
+
+study.dots   <- filter.users(study.dots,  qf.charts)
+study.charts <- filter.users(study.charts,qf.dots  )
+study.series <- filter.users(study.series,qf.series)
+
+
+avg.total.timespent <- function() {
+    time <- sum(study.dots$timespent, study.series$timespent, study.charts$timespent)
+    n    <- sum(nrow(table(study.dots$userid)),nrow(table(study.charts$userid)),nrow(table(study.series$userid)))
+
+    return((time/1000)/n)
+}
 
 add.difficulty <- function (study, row = 19){
     ls.difficulty <- c()
@@ -401,7 +427,7 @@ s.speed.medium.series.dots      <- as.data.frame(cbind(series.boxplot.medium$ls.
 s.speed.hard.dots.charts        <- as.data.frame(cbind(dots.boxplot.hard$ls.speed,        charts.boxplot.hard$ls.speed))
 s.speed.hard.series.charts      <- as.data.frame(cbind(series.boxplot.hard$ls.speed,      charts.boxplot.hard$ls.speed))
 s.speed.hard.series.dots        <- as.data.frame(cbind(series.boxplot.hard$ls.speed,      dots.boxplot.hard$ls.speed))
-s.actions.easy.dots.charts      <- as.data.frame(cbind(dots.boxplot.easy$ls.actions,      charts.boxplot.easy$ls.actions))
+s.actions.easy.dots.charts      <- as.data.frame(cbind(series.boxplot.easy$ls.actions,      charts.boxplot.easy$ls.actions))
 s.actions.easy.series.charts    <- as.data.frame(cbind(series.boxplot.easy$ls.actions,    charts.boxplot.easy$ls.actions))
 s.actions.easy.series.dots      <- as.data.frame(cbind(series.boxplot.easy$ls.actions,    dots.boxplot.easy$ls.actions))
 s.actions.medium.dots.charts    <- as.data.frame(cbind(dots.boxplot.medium$ls.actions,    charts.boxplot.medium$ls.actions))
@@ -516,4 +542,126 @@ l.accuracy.hard.series.dots     <- leveneTest(s.accuracy.hard.series.dots$value 
 #charts.boxplot.hard$ls.speed   
 #series.boxplot.hard$ls.speed   
 #dots.boxplot.hard$ls.speed   
-        
+
+
+conf.interval <- function(data) {
+    data <- t.test(data)
+    mean   <- data$estimate
+    min    <- data$conf.int[1]
+    max    <- data$conf.int[2]
+    output <- data.frame(mean,min,max)
+    return(output)
+}
+
+t2.aspect    <- c("e.acc","e.speed", "m.actions","m.acc","m.speed", "m.actions", "h.acc","h.speed", "h.actions")
+t2.intuitive <- c(mean(series.boxplot.easy$ls.accuracy), mean(series.boxplot.easy$ls.speed), mean(series.boxplot.easy$ls.actions), mean(series.boxplot.medium$ls.accuracy), mean(series.boxplot.medium$ls.speed), mean(series.boxplot.medium$ls.actions), mean(series.boxplot.hard$ls.accuracy), mean(series.boxplot.hard$ls.speed), mean(series.boxplot.hard$ls.actions))
+t2.detailed  <- c(mean(charts.boxplot.easy$ls.accuracy), mean(charts.boxplot.easy$ls.speed), mean(charts.boxplot.easy$ls.actions), mean(charts.boxplot.medium$ls.accuracy), mean(charts.boxplot.medium$ls.speed), mean(charts.boxplot.medium$ls.actions), mean(charts.boxplot.hard$ls.accuracy), mean(charts.boxplot.hard$ls.speed), mean(charts.boxplot.hard$ls.actions))
+t2.compact   <- c(mean(dots.boxplot.easy$ls.accuracy)  , mean(dots.boxplot.easy$ls.speed),   mean(dots.boxplot.easy$ls.actions),   mean(dots.boxplot.medium$ls.accuracy),   mean(dots.boxplot.medium$ls.speed),   mean(dots.boxplot.medium$ls.actions  ), mean(dots.boxplot.hard$ls.accuracy),   mean(dots.boxplot.hard$ls.speed),   mean(dots.boxplot.hard$ls.actions  ))
+
+table2 <- data.frame(t2.aspect, t2.intuitive, t2.detailed, t2.compact)
+
+
+
+
+e.acc.int <- conf.interval(series.boxplot.easy$ls.accuracy)
+e.acc.det <- conf.interval(charts.boxplot.easy$ls.accuracy)
+e.acc.com <- conf.interval(dots.boxplot.easy$ls.accuracy)
+m.acc.int <- conf.interval(series.boxplot.medium$ls.accuracy)
+m.acc.det <- conf.interval(charts.boxplot.medium$ls.accuracy)
+m.acc.com <- conf.interval(dots.boxplot.medium$ls.accuracy  )
+h.acc.int <- conf.interval(series.boxplot.hard$ls.accuracy)
+h.acc.det <- conf.interval(charts.boxplot.hard$ls.accuracy)
+h.acc.com <- conf.interval(dots.boxplot.hard$ls.accuracy  )
+
+ggplot(e.acc.int, aes(x = "Intuitive", y = mean)) + 
+geom_point(data = e.acc.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+geom_point(data = e.acc.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+geom_point(data = e.acc.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+geom_errorbar(data = e.acc.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+geom_errorbar(data = e.acc.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+geom_errorbar(data = e.acc.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+coord_flip() +
+labs(title ="", x = "Easy", y = "Accuracy")
+
+ggplot(m.acc.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = m.acc.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = m.acc.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = m.acc.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = m.acc.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = m.acc.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = m.acc.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    coord_flip() +
+    labs(title ="", x = "Medium", y = "Accuracy")
+
+
+ggplot(h.acc.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = h.acc.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = h.acc.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = h.acc.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = h.acc.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = h.acc.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = h.acc.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    coord_flip() +
+    labs(title ="", x = "Hard", y = "Accuracy")
+
+
+e.act.int <- conf.interval(series.boxplot.easy$ls.actions)
+e.act.det <- conf.interval(charts.boxplot.easy$ls.actions)
+e.act.com <- conf.interval(dots.boxplot.easy$ls.actions)
+m.act.int <- conf.interval(series.boxplot.medium$ls.actions)
+m.act.det <- conf.interval(charts.boxplot.medium$ls.actions)
+m.act.com <- conf.interval(dots.boxplot.medium$ls.actions)   
+h.act.int <- conf.interval(series.boxplot.hard$ls.actions)
+h.act.det <- conf.interval(charts.boxplot.hard$ls.actions)
+h.act.com <- conf.interval(dots.boxplot.hard$ls.actions)
+
+ggplot(e.act.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = e.act.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = e.act.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = e.act.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = e.act.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = e.act.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = e.act.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    coord_flip() +
+    labs(title ="", x = "Easy", y = "Actions")
+
+ggplot(m.act.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = m.act.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = m.act.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = m.act.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = m.act.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = m.act.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = m.act.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    coord_flip() +
+    labs(title ="", x = "Medium", y = "Actions")
+
+
+ggplot(h.act.int, aes(x = "Intuitive", y = mean)) + 
+    geom_point(data = h.act.int, aes(x="Intuitive",y = mean), color = "#08519c") + 
+    geom_point(data = h.act.det, aes(x="Detailed" ,y = mean), color = "#08519c") + 
+    geom_point(data = h.act.com, aes(x="Compact"  ,y = mean), color = "#08519c") + 
+    geom_errorbar(data = h.act.int, aes(x="Intuitive", ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = h.act.det, aes(x="Detailed" , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    geom_errorbar(data = h.act.com, aes(x="Compact"  , ymax = max, ymin = min), width=0.1, color = "#08519c") + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0,1)) +
+    coord_flip() +
+    labs(title ="", x = "Hard", y = "Actions")
+
+
+
+e.speed.int <- conf.interval(series.boxplot.easy$ls.speed)
+e.speed.det <- conf.interval(charts.boxplot.easy$ls.speed)
+e.speed.com <- conf.interval(dots.boxplot.easy$ls.speed)
+m.speed.int <- conf.interval(series.boxplot.medium$ls.speed)
+m.speed.det <- conf.interval(charts.boxplot.medium$ls.speed)
+m.speed.com <- conf.interval(dots.boxplot.medium$ls.speed) 
+h.speed.int <- conf.interval(series.boxplot.hard$ls.speed)
+h.speed.det <- conf.interval(charts.boxplot.hard$ls.speed)
+h.speed.com <- conf.interval(dots.boxplot.hard$ls.speed)   
+
+
