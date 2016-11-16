@@ -2,12 +2,22 @@ require(plyr)
 require(devtools)
 require(likert)
 
-qf.charts <- read.csv("data/qf_charts.csv") 
-qf.dots   <- read.csv("data/qf_dots.csv") 
-qf.series <- read.csv("data/qf_series.csv") 
-study.dots   <- read.csv("data/study_dots.csv") 
-study.charts <- read.csv("data/study_charts.csv") 
-study.series <- read.csv("data/study_series.csv") 
+#### First Study
+# study.dots   <- read.csv("data/s1_dots.csv")
+# study.charts <- read.csv("data/s1_charts.csv")
+# study.series <- read.csv("data/s1_maps.csv")
+# qf.charts    <- read.csv("data/qf1_charts.csv")
+# qf.dots      <- read.csv("data/qf1_dots.csv")
+# qf.series    <- read.csv("data/qf1_maps.csv")
+
+#### Second Study
+study.dots   <- read.csv("data/s2_dots.csv")
+study.charts <- read.csv("data/s2_charts.csv")
+study.series <- read.csv("data/s2_series.csv")
+qf.charts    <- read.csv("data/qf2_charts.csv")
+qf.dots      <- read.csv("data/qf2_dots.csv")
+qf.series    <- read.csv("data/qf2_series.csv")
+
 
 
 filter.users <- function(main.study, qf.study) {
@@ -58,6 +68,22 @@ for (user in dots.users) {
             vq13   <- c(vq13  , qf.study[i,23]) 
             vq14   <- c(vq14  , qf.study[i,24]) 
             vq15   <- c(vq15  , qf.study[i,25]) 
+            
+            # vq1    <- c(vq1   , qf.study[i,5])
+            # vq2    <- c(vq2   , qf.study[i,6])
+            # vq3    <- c(vq3   , qf.study[i,7])
+            # vq4    <- c(vq4   , qf.study[i,8])
+            # vq5    <- c(vq5   , qf.study[i,9])
+            # vq6    <- c(vq6   , qf.study[i,10])
+            # vq7    <- c(vq7   , qf.study[i,11])
+            # vq8    <- c(vq8   , qf.study[i,12])
+            # vq9    <- c(vq9   , qf.study[i,13])
+            # vq10   <- c(vq10  , qf.study[i,14]) 
+            # vq11   <- c(vq11  , qf.study[i,15]) 
+            # vq12   <- c(vq12  , qf.study[i,16]) 
+            # vq13   <- c(vq13  , qf.study[i,17]) 
+            # vq14   <- c(vq14  , qf.study[i,18]) 
+            # vq15   <- c(vq15  , qf.study[i,19]) 
         }
     }
 }
@@ -129,6 +155,19 @@ return(data)
 likert.compact   <- likert.scale(filtered.compact)
 likert.intuitive <- likert.scale(filtered.intuitive)
 likert.detailed  <- likert.scale(filtered.detailed)
+
+
+plot(likert(likert.detailed))
+last_plot()
+ggsave("s2.likert.detailed.png", width=6, height=3, dpi=300)
+
+plot(likert(likert.compact))
+last_plot()
+ggsave("s2.likert.compact.png", width=6, height=3, dpi=300)
+
+plot(likert(likert.intuitive))
+last_plot()
+ggsave("s2.likert.intuitive.png", width=6, height=3, dpi=300)
 
 # Charts
 # boxplot(qf.charts$vq8, qf.charts$vq1, qf.charts$vq2, qf.charts$vq3, qf.charts$vq6, qf.charts$vq14, qf.charts$vq15, ylim = c(0, max(qf.charts$vq8)))

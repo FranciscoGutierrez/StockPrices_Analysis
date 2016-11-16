@@ -8,20 +8,20 @@ library(car)
 
 
 #### First Study
-# study.dots   <- read.csv("data/s1_dots.csv")
-# study.charts <- read.csv("data/s1_charts.csv")
-# study.series <- read.csv("data/s1_maps.csv")
-# qf.charts    <- read.csv("data/qf1_charts.csv")
-# qf.dots      <- read.csv("data/qf1_dots.csv")
-# qf.series    <- read.csv("data/qf1_maps.csv")
+study.dots   <- read.csv("data/s1_dots.csv")
+study.charts <- read.csv("data/s1_charts.csv")
+study.series <- read.csv("data/s1_maps.csv")
+qf.charts    <- read.csv("data/qf1_charts.csv")
+qf.dots      <- read.csv("data/qf1_dots.csv")
+qf.series    <- read.csv("data/qf1_maps.csv")
 
 #### Second Study
-study.dots   <- read.csv("data/s2_dots.csv")
-study.charts <- read.csv("data/s2_charts.csv")
-study.series <- read.csv("data/s2_series.csv")
-qf.charts    <- read.csv("data/qf2_charts.csv")
-qf.dots      <- read.csv("data/qf2_dots.csv")
-qf.series    <- read.csv("data/qf2_series.csv")
+# study.dots   <- read.csv("data/s2_dots.csv")
+# study.charts <- read.csv("data/s2_charts.csv")
+# study.series <- read.csv("data/s2_series.csv")
+# qf.charts    <- read.csv("data/qf2_charts.csv")
+# qf.dots      <- read.csv("data/qf2_dots.csv")
+# qf.series    <- read.csv("data/qf2_series.csv")
 
 # <Questions>
 # Easy  : 1,4,7,10
