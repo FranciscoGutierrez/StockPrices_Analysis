@@ -445,3 +445,17 @@ ggplot(accuracy.frame, aes(factor(1), accuracy.frame$c.this.thing.)) + geom_viol
 # vioplot(normalize(s1.dots.boxplot.medium$ls.actions)   - s1.mean.actions,  horizontal=TRUE, col="#DB2F2E")
 # vioplot(normalize(s1.dots.boxplot.hard$ls.actions)     - s1.mean.actions,  horizontal=TRUE, col="#DB2F2E")
 
+
+l1 <- normalize(s2.dots.boxplot.hard$ls.accuracy)   - s2.mean.acc
+l2 <- normalize(s2.charts.boxplot.hard$ls.accuracy) - s2.mean.acc
+l3 <- normalize(s2.series.boxplot.hard$ls.accuracy) - s2.mean.acc
+
+
+some.frame <- data.frame(l1,l2,l3)
+
+fit <- brm(l1 ~ ., data = some.frame)
+posterior <- as.matrix(fit)
+
+
+
+

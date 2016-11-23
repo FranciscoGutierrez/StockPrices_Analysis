@@ -355,6 +355,18 @@ df.accuracy.easy   <- data.frame(easy.viz,   easy.accuracy)
 df.accuracy.medium <- data.frame(medium.viz, medium.accuracy) 
 df.accuracy.hard   <- data.frame(hard.viz,   hard.accuracy) 
 
+
+lm.speed.easy.anova      <- anova(lm(easy.speed      ~ easy.viz,   data=df.speed.easy))
+lm.speed.medium.anova    <- anova(lm(medium.speed    ~ medium.viz, data=df.speed.medium))
+lm.speed.hard.anova      <- anova(lm(hard.speed      ~ hard.viz,   data=df.speed.hard))
+lm.actions.easy.anova    <- anova(lm(easy.actions    ~ easy.viz,   data=df.actions.easy))
+lm.actions.medium.anova  <- anova(lm(medium.actions  ~ medium.viz, data=df.actions.medium))
+lm.actions.hard.anova    <- anova(lm(hard.actions    ~ hard.viz,   data=df.actions.hard))
+lm.accuracy.easy.anova   <- anova(lm(easy.accuracy   ~ easy.viz,   data=df.accuracy.easy))
+lm.accuracy.medium.anova <- anova(lm(medium.accuracy ~ medium.viz, data=df.accuracy.medium))
+lm.accuracy.hard.anova   <- anova(lm(hard.accuracy   ~ hard.viz,   data=df.accuracy.hard))
+
+
 speed.easy.anova      <- aov(easy.speed      ~ easy.viz,   data=df.speed.easy)
 speed.medium.anova    <- aov(medium.speed    ~ medium.viz, data=df.speed.medium)
 speed.hard.anova      <- aov(hard.speed      ~ hard.viz,   data=df.speed.hard)
@@ -387,15 +399,15 @@ tukey.accuracy.medium <- TukeyHSD(accuracy.medium.anova)
 tukey.accuracy.hard   <- TukeyHSD(accuracy.hard.anova)
 
 # Bonferroni correction for post hoc study...
-# p.adjust(tukey.speed.easy$easy.viz[,4],        method = "holm")
-# p.adjust(tukey.speed.medium$medium.viz[,4],    method = "holm")
-# p.adjust(tukey.speed.hard$hard.viz[,4],        method = "holm")
-# p.adjust(tukey.actions.easy$easy.viz[,4],      method = "holm")
-# p.adjust(tukey.actions.medium$medium.viz[,4],  method = "holm")
-# p.adjust(tukey.actions.hard$hard.viz[,4],      method = "holm")
-# p.adjust(tukey.accuracy.easy$easy.viz[,4],     method = "holm")
-# p.adjust(tukey.accuracy.medium$medium.viz[,4], method = "holm")
-# p.adjust(tukey.accuracy.hard$hard.viz[,4],     method = "holm")
+p.adjust(tukey.speed.easy$easy.viz[,4],        method = "holm")
+p.adjust(tukey.speed.medium$medium.viz[,4],    method = "holm")
+p.adjust(tukey.speed.hard$hard.viz[,4],        method = "holm")
+p.adjust(tukey.actions.easy$easy.viz[,4],      method = "holm")
+p.adjust(tukey.actions.medium$medium.viz[,4],  method = "holm")
+p.adjust(tukey.actions.hard$hard.viz[,4],      method = "holm")
+p.adjust(tukey.accuracy.easy$easy.viz[,4],     method = "holm")
+p.adjust(tukey.accuracy.medium$medium.viz[,4], method = "holm")
+p.adjust(tukey.accuracy.hard$hard.viz[,4],     method = "holm")
 
 # Do the T-test for each pair...
 t.speed.easy.dots.charts        <- t.test(dots.boxplot.easy$ls.speed,        charts.boxplot.easy$ls.speed)
@@ -718,3 +730,41 @@ write.table(dots.boxplot.medium   , "s2.dots.boxplot.medium.csv"  , sep=",")
 write.table(series.boxplot.hard   , "s2.series.boxplot.hard.csv"  , sep=",")
 write.table(charts.boxplot.hard   , "s2.charts.boxplot.hard.csv"  , sep=",") 
 write.table(dots.boxplot.hard     , "s2.dots.boxplot.hard.csv"    , sep=",")
+
+
+
+
+
+t.test(series.boxplot.easy$ls.accuracy)
+t.test(series.boxplot.medium$ls.accuracy)
+t.test(series.boxplot.hard$ls.accuracy)
+t.test(charts.boxplot.easy$ls.accuracy)
+t.test(charts.boxplot.medium$ls.accuracy)
+t.test(charts.boxplot.hard$ls.accuracy)
+t.test(dots.boxplot.easy$ls.accuracy)
+t.test(dots.boxplot.medium$ls.accuracy)
+t.test(dots.boxplot.hard$ls.accuracy)
+
+mean(series.boxplot.easy$ls.speed)
+mean(series.boxplot.medium$ls.speed)
+mean(series.boxplot.hard$ls.speed)
+mean(charts.boxplot.easy$ls.speed)
+mean(charts.boxplot.medium$ls.speed)
+mean(charts.boxplot.hard$ls.speed)
+mean(dots.boxplot.easy$ls.speed)
+mean(dots.boxplot.medium$ls.speed)
+mean(dots.boxplot.hard$ls.speed)
+
+
+mean(series.boxplot.easy$ls.actions)
+mean(series.boxplot.medium$ls.actions)
+mean(series.boxplot.hard$ls.actions)
+mean(charts.boxplot.easy$ls.actions)
+mean(charts.boxplot.medium$ls.actions)
+mean(charts.boxplot.hard$ls.actions)
+mean(dots.boxplot.easy$ls.actions)
+mean(dots.boxplot.medium$ls.actions)
+mean(dots.boxplot.hard$ls.actions)
+
+
+
