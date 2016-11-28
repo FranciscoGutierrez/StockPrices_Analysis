@@ -8,20 +8,20 @@ library(car)
 
 
 #### First Study
-study.dots   <- read.csv("data/s1_dots.csv")
-study.charts <- read.csv("data/s1_charts.csv")
-study.series <- read.csv("data/s1_maps.csv")
-qf.charts    <- read.csv("data/qf1_charts.csv")
-qf.dots      <- read.csv("data/qf1_dots.csv")
-qf.series    <- read.csv("data/qf1_maps.csv")
+# study.dots   <- read.csv("data/s1_dots.csv")
+# study.charts <- read.csv("data/s1_charts.csv")
+# study.series <- read.csv("data/s1_maps.csv")
+# qf.charts    <- read.csv("data/qf1_charts.csv")
+# qf.dots      <- read.csv("data/qf1_dots.csv")
+# qf.series    <- read.csv("data/qf1_maps.csv")
 
 #### Second Study
-# study.dots   <- read.csv("data/s2_dots.csv")
-# study.charts <- read.csv("data/s2_charts.csv")
-# study.series <- read.csv("data/s2_series.csv")
-# qf.charts    <- read.csv("data/qf2_charts.csv")
-# qf.dots      <- read.csv("data/qf2_dots.csv")
-# qf.series    <- read.csv("data/qf2_series.csv")
+study.dots   <- read.csv("data/s2_dots.csv")
+study.charts <- read.csv("data/s2_charts.csv")
+study.series <- read.csv("data/s2_series.csv")
+qf.charts    <- read.csv("data/qf2_charts.csv")
+qf.dots      <- read.csv("data/qf2_dots.csv")
+qf.series    <- read.csv("data/qf2_series.csv")
 
 # <Questions>
 # Easy  : 1,4,7,10
@@ -159,109 +159,6 @@ charts.boxplot.hard   <- create.boxplot(clean.study.charts, "hard")
 series.boxplot.hard   <- create.boxplot(clean.study.series, "hard")
 dots.boxplot.hard     <- create.boxplot(clean.study.dots,   "hard")
 
-#par(bty='n', mfrow=c(3,1), las=1)
-#########
-# Speed #
-#########
-# boxplot(dots.boxplot.easy$ls.speed, 
-#         charts.boxplot.easy$ls.speed, 
-#         series.boxplot.easy$ls.speed, 
-#         dots.boxplot.medium$ls.speed, 
-#         charts.boxplot.medium$ls.speed, 
-#         series.boxplot.medium$ls.speed, 
-#         dots.boxplot.hard$ls.speed, 
-#         charts.boxplot.hard$ls.speed, 
-#         series.boxplot.hard$ls.speed, 
-#         ylim = c(0, 150), 
-#         main="speed", col="aliceblue",
-#         names = c("e.dots",
-#                   "e.charts",
-#                   "e.series",
-#                   "m.dots",
-#                   "m.charts",
-#                   "m.series",
-#                   "h.dots",
-#                   "h.charts",
-#                   "h.series"))
-#         points(1:9, c(mean(dots.boxplot.easy$ls.speed),
-#                       mean(charts.boxplot.easy$ls.speed),
-#                       mean(series.boxplot.easy$ls.speed),
-#                       mean(dots.boxplot.medium$ls.speed),
-#                       mean(charts.boxplot.medium$ls.speed),
-#                       mean(series.boxplot.medium$ls.speed),
-#                       mean(dots.boxplot.hard$ls.speed),
-#                       mean(charts.boxplot.hard$ls.speed),
-#                       mean(series.boxplot.hard$ls.speed)),
-#                pch="+", cex = 2)
-###########
-# Actions #
-###########
-# 
-#         boxplot(dots.boxplot.easy$ls.actions, 
-#                 charts.boxplot.easy$ls.actions, 
-#                 series.boxplot.easy$ls.actions, 
-#                 dots.boxplot.medium$ls.actions, 
-#                 charts.boxplot.medium$ls.actions, 
-#                 series.boxplot.medium$ls.actions, 
-#                 dots.boxplot.hard$ls.actions, 
-#                 charts.boxplot.hard$ls.actions, 
-#                 series.boxplot.hard$ls.actions, 
-#                 ylim = c(0, 20), 
-#                 main="actions", col="aliceblue", 
-#                 names = c("e.dots",
-#                           "e.charts",
-#                           "e.series",
-#                           "m.dots",
-#                           "m.charts",
-#                           "m.series",
-#                           "h.dots",
-#                           "h.charts",
-#                           "h.series"))
-#         points(1:9, c(mean(dots.boxplot.easy$ls.actions),
-#                       mean(charts.boxplot.easy$ls.actions),
-#                       mean(series.boxplot.easy$ls.actions),
-#                       mean(dots.boxplot.medium$ls.actions),
-#                       mean(charts.boxplot.medium$ls.actions),
-#                       mean(series.boxplot.medium$ls.actions),
-#                       mean(dots.boxplot.hard$ls.actions),
-#                       mean(charts.boxplot.hard$ls.actions),
-#                       mean(series.boxplot.hard$ls.actions)),
-#                pch="+", cex = 2)
-        
-############
-# Accuracy #
-############
-        # boxplot(dots.boxplot.easy$ls.accuracy, 
-        #         charts.boxplot.easy$ls.accuracy, 
-        #         series.boxplot.easy$ls.accuracy, 
-        #         dots.boxplot.medium$ls.accuracy, 
-        #         charts.boxplot.medium$ls.accuracy, 
-        #         series.boxplot.medium$ls.accuracy, 
-        #         dots.boxplot.hard$ls.accuracy, 
-        #         charts.boxplot.hard$ls.accuracy, 
-        #         series.boxplot.hard$ls.accuracy, 
-        #         ylim = c(0, max(series.boxplot.hard$ls.accuracy)), 
-        #         main="accuracy", col="aliceblue", 
-        #         names = c("e.dots",
-        #                   "e.charts",
-        #                   "e.series",
-        #                   "m.dots",
-        #                   "m.charts",
-        #                   "m.series",
-        #                   "h.dots",
-        #                   "h.charts",
-        #                   "h.series"))
-        # points(1:9, c(mean(dots.boxplot.easy$ls.accuracy),
-        #               mean(charts.boxplot.easy$ls.accuracy),
-        #               mean(series.boxplot.easy$ls.accuracy),
-        #               mean(dots.boxplot.medium$ls.accuracy),
-        #               mean(charts.boxplot.medium$ls.accuracy),
-        #               mean(series.boxplot.medium$ls.accuracy),
-        #               mean(dots.boxplot.hard$ls.accuracy),
-        #               mean(charts.boxplot.hard$ls.accuracy),
-        #               mean(series.boxplot.hard$ls.accuracy)),
-        #        pch="+", cex = 2)
-        
 #############################################################
 easy.speed <- c()
 easy.viz   <- c()
@@ -377,16 +274,6 @@ accuracy.easy.anova   <- aov(easy.accuracy   ~ easy.viz,   data=df.accuracy.easy
 accuracy.medium.anova <- aov(medium.accuracy ~ medium.viz, data=df.accuracy.medium)
 accuracy.hard.anova   <- aov(hard.accuracy   ~ hard.viz,   data=df.accuracy.hard)
 
-k.speed.easy      <- kruskal.test(easy.speed      ~ easy.viz,   data = df.speed.easy)
-k.speed.medium    <- kruskal.test(medium.speed    ~ medium.viz, data = df.speed.medium)
-k.speed.hard      <- kruskal.test(hard.speed      ~ hard.viz,   data = df.speed.hard)
-k.actions.easy    <- kruskal.test(easy.actions    ~ easy.viz,   data = df.actions.easy)
-k.actions.medium  <- kruskal.test(medium.actions  ~ medium.viz, data = df.actions.medium)
-k.actions.hard    <- kruskal.test(hard.actions    ~ hard.viz,   data = df.actions.hard)
-k.accuracy.easy   <- kruskal.test(easy.accuracy   ~ easy.viz,   data = df.accuracy.easy)
-k.accuracy.medium <- kruskal.test(medium.accuracy ~ medium.viz, data = df.accuracy.medium)
-k.accuracy.hard   <- kruskal.test(hard.accuracy   ~ hard.viz,   data = df.accuracy.hard)
-
 # Post Hoc Study
 tukey.speed.easy      <- TukeyHSD(speed.easy.anova)
 tukey.speed.medium    <- TukeyHSD(speed.medium.anova)
@@ -399,15 +286,15 @@ tukey.accuracy.medium <- TukeyHSD(accuracy.medium.anova)
 tukey.accuracy.hard   <- TukeyHSD(accuracy.hard.anova)
 
 # Bonferroni correction for post hoc study...
-p.adjust(tukey.speed.easy$easy.viz[,4],        method = "holm")
-p.adjust(tukey.speed.medium$medium.viz[,4],    method = "holm")
-p.adjust(tukey.speed.hard$hard.viz[,4],        method = "holm")
-p.adjust(tukey.actions.easy$easy.viz[,4],      method = "holm")
-p.adjust(tukey.actions.medium$medium.viz[,4],  method = "holm")
-p.adjust(tukey.actions.hard$hard.viz[,4],      method = "holm")
-p.adjust(tukey.accuracy.easy$easy.viz[,4],     method = "holm")
-p.adjust(tukey.accuracy.medium$medium.viz[,4], method = "holm")
-p.adjust(tukey.accuracy.hard$hard.viz[,4],     method = "holm")
+# p.adjust(tukey.speed.easy$easy.viz[,4],        method = "holm")
+# p.adjust(tukey.speed.medium$medium.viz[,4],    method = "holm")
+# p.adjust(tukey.speed.hard$hard.viz[,4],        method = "holm")
+# p.adjust(tukey.actions.easy$easy.viz[,4],      method = "holm")
+# p.adjust(tukey.actions.medium$medium.viz[,4],  method = "holm")
+# p.adjust(tukey.actions.hard$hard.viz[,4],      method = "holm")
+# p.adjust(tukey.accuracy.easy$easy.viz[,4],     method = "holm")
+# p.adjust(tukey.accuracy.medium$medium.viz[,4], method = "holm")
+# p.adjust(tukey.accuracy.hard$hard.viz[,4],     method = "holm")
 
 # Do the T-test for each pair...
 t.speed.easy.dots.charts        <- t.test(dots.boxplot.easy$ls.speed,        charts.boxplot.easy$ls.speed)
@@ -745,26 +632,25 @@ t.test(dots.boxplot.easy$ls.accuracy)
 t.test(dots.boxplot.medium$ls.accuracy)
 t.test(dots.boxplot.hard$ls.accuracy)
 
-mean(series.boxplot.easy$ls.speed)
-mean(series.boxplot.medium$ls.speed)
-mean(series.boxplot.hard$ls.speed)
-mean(charts.boxplot.easy$ls.speed)
-mean(charts.boxplot.medium$ls.speed)
-mean(charts.boxplot.hard$ls.speed)
-mean(dots.boxplot.easy$ls.speed)
-mean(dots.boxplot.medium$ls.speed)
-mean(dots.boxplot.hard$ls.speed)
+t.test(series.boxplot.easy$ls.actions)
+t.test(dots.boxplot.easy$ls.actions)
+t.test(charts.boxplot.easy$ls.actions)
 
+t.test(series.boxplot.medium$ls.actions)
+t.test(charts.boxplot.medium$ls.actions)
+t.test(dots.boxplot.medium$ls.actions)
 
-mean(series.boxplot.easy$ls.actions)
-mean(series.boxplot.medium$ls.actions)
-mean(series.boxplot.hard$ls.actions)
-mean(charts.boxplot.easy$ls.actions)
-mean(charts.boxplot.medium$ls.actions)
-mean(charts.boxplot.hard$ls.actions)
-mean(dots.boxplot.easy$ls.actions)
-mean(dots.boxplot.medium$ls.actions)
-mean(dots.boxplot.hard$ls.actions)
+t.test(series.boxplot.hard$ls.actions)
+t.test(charts.boxplot.hard$ls.actions)
+t.test(dots.boxplot.hard$ls.actions)
 
-
+t.test(series.boxplot.easy$ls.speed)
+t.test(series.boxplot.medium$ls.speed)
+t.test(series.boxplot.hard$ls.speed)
+t.test(charts.boxplot.easy$ls.speed)
+t.test(charts.boxplot.medium$ls.speed)
+t.test(charts.boxplot.hard$ls.speed)
+t.test(dots.boxplot.easy$ls.speed)
+t.test(dots.boxplot.medium$ls.speed)
+t.test(dots.boxplot.hard$ls.speed)
 
