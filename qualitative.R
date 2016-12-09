@@ -4,22 +4,23 @@ require(plyr)
 require(devtools)
 require(likert)
 require(ggplot2)
+require(miscTools)
 
 #### First Study
  study.dots   <- read.csv("data/s1_dots.csv")
  study.charts <- read.csv("data/s1_charts.csv")
  study.series <- read.csv("data/s1_maps.csv")
- qf.charts    <- read.csv("data/qf1_charts.csv")
- qf.dots      <- read.csv("data/qf1_dots.csv")
- qf.series    <- read.csv("data/qf1_maps.csv")
+ s1.qf.charts <- read.csv("data/qf1_charts.csv")
+ s1.qf.dots   <- read.csv("data/qf1_dots.csv")
+ s1.qf.series <- read.csv("data/qf1_maps.csv")
 
 #### Second Study
 # study.dots   <- read.csv("data/s2_dots.csv")
 # study.charts <- read.csv("data/s2_charts.csv")
 # study.series <- read.csv("data/s2_series.csv")
-# qf.charts    <- read.csv("data/qf2_charts.csv")
-# qf.dots      <- read.csv("data/qf2_dots.csv")
-# qf.series    <- read.csv("data/qf2_series.csv")
+s2.qf.charts   <- read.csv("data/qf2_charts.csv")
+s2.qf.dots     <- read.csv("data/qf2_dots.csv")
+s2.qf.series   <- read.csv("data/qf2_series.csv")
 
 #### Second Study
 s2.series.boxplot.easy   <- read.csv("data/blastprocessed/s2.series.boxplot.easy.csv"  )

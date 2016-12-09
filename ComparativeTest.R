@@ -414,13 +414,171 @@ ggsave("s1.speed.hard.png", width=6, height=3, dpi=300, bg = "transparent")
 # vioplot(normalize(s1.dots.boxplot.easy$ls.actions)     - s1.mean.actions,  horizontal=TRUE, col="#DB2F2E")
 # vioplot(normalize(s1.dots.boxplot.medium$ls.actions)   - s1.mean.actions,  horizontal=TRUE, col="#DB2F2E")
 # vioplot(normalize(s1.dots.boxplot.hard$ls.actions)     - s1.mean.actions,  horizontal=TRUE, col="#DB2F2E")
-#l1 <- normalize(s2.dots.boxplot.hard$ls.accuracy)   - s2.mean.acc
-#l2 <- normalize(s2.charts.boxplot.hard$ls.accuracy) - s2.mean.acc
-#l3 <- normalize(s2.series.boxplot.hard$ls.accuracy) - s2.mean.acc
+#l1 <- normalize(s2.dots.boxplot.hard$ls.accuracy)       - s2.mean.acc
+#l2 <- normalize(s2.charts.boxplot.hard$ls.accuracy)     - s2.mean.acc
+#l3 <- normalize(s2.series.boxplot.hard$ls.accuracy)     - s2.mean.acc
 #some.frame <- data.frame(l1,l2,l3)
 #fit <- brm(l1 ~ ., data = some.frame)
 #posterior <- as.matrix(fit)
 
+# s2.mimi <- data.frame(c(
+#   s2.e.acc.int$min,
+#   s2.e.acc.det$min,
+#   s2.e.acc.com$min,
+#   s2.m.acc.int$min,
+#   s2.m.acc.det$min,
+#   s2.m.acc.com$min,
+#   s2.h.acc.int$min,
+#   s2.h.acc.det$min,
+#   s2.h.acc.com$min,
+#   s2.e.act.int$min,
+#   s2.e.act.det$min,
+#   s2.e.act.com$min,
+#   s2.m.act.int$min,
+#   s2.m.act.det$min,
+#   s2.m.act.com$min,
+#   s2.h.act.int$min,
+#   s2.h.act.det$min,
+#   s2.h.act.com$min,
+# s2.e.speed.int$min,
+# s2.e.speed.det$min,
+# s2.e.speed.com$min,
+# s2.m.speed.int$min,
+# s2.m.speed.det$min,
+# s2.m.speed.com$min,
+# s2.h.speed.int$min,
+# s2.h.speed.det$min,
+# s2.h.speed.com$min))
 
+s1.acc.min    <- c(s1.e.acc.int$min, s1.e.acc.det$min, s1.e.acc.com$min, s1.m.acc.int$min, s1.m.acc.det$min, s1.m.acc.com$min, s1.h.acc.int$min, s1.h.acc.det$min, s1.h.acc.com$min)
+s1.acc.max    <- c(s1.e.acc.int$max, s1.e.acc.det$max, s1.e.acc.com$max, s1.m.acc.int$max, s1.m.acc.det$max, s1.m.acc.com$max, s1.h.acc.int$max, s1.h.acc.det$max, s1.h.acc.com$max)
+s1.acc.easy   <- c(s1.e.acc.int$mean, s1.e.acc.det$mean, s1.e.acc.com$mean)
+s1.acc.medium <- c(s1.m.acc.int$mean, s1.m.acc.det$mean, s1.m.acc.com$mean)
+s1.acc.hard   <- c(s1.h.acc.int$mean, s1.h.acc.det$mean, s1.h.acc.com$mean)
+s1.acc.viz    <- c("int","det","com","int","det","com","int","det","com")
+s1.acc.df     <- data.frame(stack(data.frame(s1.acc.easy,s1.acc.medium,s1.acc.hard)), s1.acc.viz, s1.acc.min, s1.acc.max)
+
+ggplot(data=s1.acc.df, aes(x=factor(s1.acc.df$ind, levels = c("s1.acc.easy", "s1.acc.medium", "s1.acc.hard")), y=values, group=s1.acc.viz, color=s1.acc.viz)) +
+    #geom_errorbar(aes(ymin=s1.acc.min, ymax=s1.acc.max), width=.1, position=position_dodge(0.3)) +
+    geom_line(size = 1.1, position=position_dodge(0.3)) + 
+    geom_point(aes(shape=viz), size=3, position=position_dodge(0.3))+
+    scale_y_continuous(limits = c(-0.2,0.2)) +
+    scale_color_brewer(palette="Reds", type="qual") +
+    theme_void() +
+    theme(legend.position="none")
+
+last_plot()
+ggsave("s1.accuracy.corr.png", width=4, height=2, dpi=300, bg = "transparent")
+
+
+
+s2.acc.min    <- c(s2.e.acc.int$min, s2.e.acc.det$min, s2.e.acc.com$min, s2.m.acc.int$min, s2.m.acc.det$min, s2.m.acc.com$min, s2.h.acc.int$min, s2.h.acc.det$min, s2.h.acc.com$min)
+s2.acc.max    <- c(s2.e.acc.int$max, s2.e.acc.det$max, s2.e.acc.com$max, s2.m.acc.int$max, s2.m.acc.det$max, s2.m.acc.com$max, s2.h.acc.int$max, s2.h.acc.det$max, s2.h.acc.com$max)
+s2.acc.easy   <- c(s2.e.acc.int$mean, s2.e.acc.det$mean, s2.e.acc.com$mean)
+s2.acc.medium <- c(s2.m.acc.int$mean, s2.m.acc.det$mean, s2.m.acc.com$mean)
+s2.acc.hard   <- c(s2.h.acc.int$mean, s2.h.acc.det$mean, s2.h.acc.com$mean)
+s2.acc.viz    <- c("int","det","com","int","det","com","int","det","com")
+s2.acc.df     <- data.frame(stack(data.frame(s2.acc.easy,s2.acc.medium,s2.acc.hard)), s2.acc.viz, s2.acc.min, s2.acc.max)
+
+ggplot(data=s2.acc.df, aes(x=factor(s2.acc.df$ind, levels = c("s2.acc.easy", "s2.acc.medium", "s2.acc.hard")), y=values, group=s2.acc.viz, color=s2.acc.viz)) +
+    #geom_errorbar(aes(ymin=s2.acc.min, ymax=s2.acc.max), width=.1, position=position_dodge(0.3)) +
+    geom_line(size = 1.1, position=position_dodge(0.3)) + 
+    geom_point(aes(shape=viz), size=3, position=position_dodge(0.3))+
+    scale_y_continuous(limits = c(-0.2,0.2)) +
+    scale_color_brewer(palette="Blues", type="qual") +
+    theme_void() +
+    theme(legend.position="none")
+
+last_plot()
+ggsave("s2.accuracy.corr.png", width=4, height=2, dpi=300, bg = "transparent")
+
+#####
+
+
+s1.act.min    <- c(s1.e.act.int$min, s1.e.act.det$min, s1.e.act.com$min, s1.m.act.int$min, s1.m.act.det$min, s1.m.act.com$min, s1.h.act.int$min, s1.h.act.det$min, s1.h.act.com$min)
+s1.act.max    <- c(s1.e.act.int$max, s1.e.act.det$max, s1.e.act.com$max, s1.m.act.int$max, s1.m.act.det$max, s1.m.act.com$max, s1.h.act.int$max, s1.h.act.det$max, s1.h.act.com$max)
+s1.act.easy   <- c(s1.e.act.int$mean, s1.e.act.det$mean, s1.e.act.com$mean)
+s1.act.medium <- c(s1.m.act.int$mean, s1.m.act.det$mean, s1.m.act.com$mean)
+s1.act.hard   <- c(s1.h.act.int$mean, s1.h.act.det$mean, s1.h.act.com$mean)
+s1.act.viz    <- c("int","det","com","int","det","com","int","det","com")
+s1.act.df     <- data.frame(stack(data.frame(s1.act.easy,s1.act.medium,s1.act.hard)), s1.act.viz, s1.act.min, s1.act.max)
+
+ggplot(data=s1.act.df, aes(x=factor(s1.act.df$ind, levels = c("s1.act.easy", "s1.act.medium", "s1.act.hard")), y=values, group=s1.act.viz, color=s1.act.viz)) +
+    #geom_errorbar(aes(ymin=s1.act.min, ymax=s1.act.max), width=.1, position=position_dodge(0.3)) +
+    geom_line(size = 1.1, position=position_dodge(0.3)) + 
+    geom_point(aes(shape=viz), size=3, position=position_dodge(0.3))+
+    scale_y_continuous(limits = c(-0.2,0.2)) +
+    scale_color_brewer(palette="Reds", type="qual") +
+    theme_void() +
+    theme(legend.position="none")
+
+last_plot()
+ggsave("s1.actions.corr.png", width=4, height=2, dpi=300, bg = "transparent")
+
+
+
+s2.act.min    <- c(s2.e.act.int$min, s2.e.act.det$min, s2.e.act.com$min, s2.m.act.int$min, s2.m.act.det$min, s2.m.act.com$min, s2.h.act.int$min, s2.h.act.det$min, s2.h.act.com$min)
+s2.act.max    <- c(s2.e.act.int$max, s2.e.act.det$max, s2.e.act.com$max, s2.m.act.int$max, s2.m.act.det$max, s2.m.act.com$max, s2.h.act.int$max, s2.h.act.det$max, s2.h.act.com$max)
+s2.act.easy   <- c(s2.e.act.int$mean, s2.e.act.det$mean, s2.e.act.com$mean)
+s2.act.medium <- c(s2.m.act.int$mean, s2.m.act.det$mean, s2.m.act.com$mean)
+s2.act.hard   <- c(s2.h.act.int$mean, s2.h.act.det$mean, s2.h.act.com$mean)
+s2.act.viz    <- c("int","det","com","int","det","com","int","det","com")
+s2.act.df     <- data.frame(stack(data.frame(s2.act.easy,s2.act.medium,s2.act.hard)), s2.act.viz, s2.act.min, s2.act.max)
+
+ggplot(data=s2.act.df, aes(x=factor(s2.act.df$ind, levels = c("s2.act.easy", "s2.act.medium", "s2.act.hard")), y=values, group=s2.act.viz, color=s2.act.viz)) +
+    #geom_errorbar(aes(ymin=s2.act.min, ymax=s2.act.max), width=.1, position=position_dodge(0.3)) +
+    geom_line(size = 1.1, position=position_dodge(0.3)) + 
+    geom_point(aes(shape=viz), size=3, position=position_dodge(0.3))+
+    scale_y_continuous(limits = c(-0.2,0.2)) +
+    scale_color_brewer(palette="Blues", type="qual") +
+    theme_void() +
+    theme(legend.position="none")
+
+last_plot()
+ggsave("s2.actions.corr.png", width=4, height=2, dpi=300, bg = "transparent")
+
+#####
+
+s1.speed.min    <- c(s1.e.speed.int$min, s1.e.speed.det$min, s1.e.speed.com$min, s1.m.speed.int$min, s1.m.speed.det$min, s1.m.speed.com$min, s1.h.speed.int$min, s1.h.speed.det$min, s1.h.speed.com$min)
+s1.speed.max    <- c(s1.e.speed.int$max, s1.e.speed.det$max, s1.e.speed.com$max, s1.m.speed.int$max, s1.m.speed.det$max, s1.m.speed.com$max, s1.h.speed.int$max, s1.h.speed.det$max, s1.h.speed.com$max)
+s1.speed.easy   <- c(s1.e.speed.int$mean, s1.e.speed.det$mean, s1.e.speed.com$mean)
+s1.speed.medium <- c(s1.m.speed.int$mean, s1.m.speed.det$mean, s1.m.speed.com$mean)
+s1.speed.hard   <- c(s1.h.speed.int$mean, s1.h.speed.det$mean, s1.h.speed.com$mean)
+s1.speed.viz    <- c("int","det","com","int","det","com","int","det","com")
+s1.speed.df     <- data.frame(stack(data.frame(s1.speed.easy,s1.speed.medium,s1.speed.hard)), s1.speed.viz, s1.speed.min, s1.speed.max)
+
+ggplot(data=s1.speed.df, aes(x=factor(s1.speed.df$ind, levels = c("s1.speed.easy", "s1.speed.medium", "s1.speed.hard")), y=values, group=s1.speed.viz, color=s1.speed.viz)) +
+    #geom_errorbar(aes(ymin=s1.speed.min, ymax=s1.speed.max), width=.1, position=position_dodge(0.3)) +
+    geom_line(size = 1.1, position=position_dodge(0.3)) + 
+    geom_point(aes(shape=viz), size=3, position=position_dodge(0.3))+
+    scale_y_continuous(limits = c(-0.2,0.2)) +
+    scale_color_brewer(palette="Reds", type="qual") +
+    theme_void() +
+    theme(legend.position="none")
+
+last_plot()
+ggsave("s1.speed.corr.png", width=4, height=2, dpi=300, bg = "transparent")
+
+
+
+s2.speed.min    <- c(s2.e.speed.int$min, s2.e.speed.det$min, s2.e.speed.com$min, s2.m.speed.int$min, s2.m.speed.det$min, s2.m.speed.com$min, s2.h.speed.int$min, s2.h.speed.det$min, s2.h.speed.com$min)
+s2.speed.max    <- c(s2.e.speed.int$max, s2.e.speed.det$max, s2.e.speed.com$max, s2.m.speed.int$max, s2.m.speed.det$max, s2.m.speed.com$max, s2.h.speed.int$max, s2.h.speed.det$max, s2.h.speed.com$max)
+s2.speed.easy   <- c(s2.e.speed.int$mean, s2.e.speed.det$mean, s2.e.speed.com$mean)
+s2.speed.medium <- c(s2.m.speed.int$mean, s2.m.speed.det$mean, s2.m.speed.com$mean)
+s2.speed.hard   <- c(s2.h.speed.int$mean, s2.h.speed.det$mean, s2.h.speed.com$mean)
+s2.speed.viz    <- c("int","det","com","int","det","com","int","det","com")
+s2.speed.df     <- data.frame(stack(data.frame(s2.speed.easy,s2.speed.medium,s2.speed.hard)), s2.speed.viz, s2.speed.min, s2.speed.max)
+
+ggplot(data=s2.speed.df, aes(x=factor(s2.speed.df$ind, levels = c("s2.speed.easy", "s2.speed.medium", "s2.speed.hard")), y=values, group=s2.speed.viz, color=s2.speed.viz)) +
+    #geom_errorbar(aes(ymin=s2.speed.min, ymax=s2.speed.max), width=.1, position=position_dodge(0.3)) +
+    geom_line(size = 1.1, position=position_dodge(0.3)) + 
+    geom_point(aes(shape=viz), size=3, position=position_dodge(0.3))+
+    scale_y_continuous(limits = c(-0.2,0.2)) +
+    scale_color_brewer(palette="Blues", type="qual") +
+    theme_void() +
+    theme(legend.position="none")
+
+last_plot()
+ggsave("s2.speed.corr.png", width=4, height=2, dpi=300, bg = "transparent")
 
 

@@ -1,6 +1,6 @@
 library(Hmisc)
 require(ggplot2)
-
+require(miscTools)
 #### First Study
 s1.qf.charts    <- read.csv("data/qf1_charts.csv")
 s1.qf.dots      <- read.csv("data/qf1_dots.csv")
@@ -201,6 +201,11 @@ rcorr(as.matrix(subset(s2.compact.hard,    select = c(ls.speed, ls.actions, ls.a
 
 
 
+colMedians(subset(s1.intuitive, select = c(ease, understand, appeal, engage, likeit, trust, credible, confidence, operation, suitable, importance, comprehensible, easytasks, opacity, expect)))  
+colMedians(subset(s1.detailed,  select = c(ease, understand, appeal, engage, likeit, trust, credible, confidence, operation, suitable, importance, comprehensible, easytasks, opacity, expect)))
+colMedians(subset(s1.compact,   select = c(ease, understand, appeal, engage, likeit, trust, credible, confidence, operation, suitable, importance, comprehensible, easytasks, opacity, expect)))
 
-
+colMedians(subset(s2.intuitive, select = c(ease, understand, appeal, engage, likeit, trust, credible, confidence, operation, suitable, importance, comprehensible, easytasks, opacity, expect)))  
+colMedians(subset(s2.detailed,  select = c(ease, understand, appeal, engage, likeit, trust, credible, confidence, operation, suitable, importance, comprehensible, easytasks, opacity, expect)))
+colMedians(subset(s2.compact,   select = c(ease, understand, appeal, engage, likeit, trust, credible, confidence, operation, suitable, importance, comprehensible, easytasks, opacity, expect)))
 
