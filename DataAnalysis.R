@@ -1,6 +1,7 @@
 require(ggplot2)
 library(reshape2)
 library(car)
+library(Rcmdr)
 # References: 
 ## https://personality-project.org/r/r.guide.html#oneway
 ## http://www.gardenersown.co.uk/education/lectures/r/anova.htm
@@ -263,6 +264,15 @@ lm.accuracy.easy.anova   <- anova(lm(easy.accuracy   ~ easy.viz,   data=df.accur
 lm.accuracy.medium.anova <- anova(lm(medium.accuracy ~ medium.viz, data=df.accuracy.medium))
 lm.accuracy.hard.anova   <- anova(lm(hard.accuracy   ~ hard.viz,   data=df.accuracy.hard))
 
+leveneTest(easy.speed     , easy.viz)
+leveneTest(medium.speed   , medium.viz)
+leveneTest(hard.speed     , hard.viz) 
+leveneTest(easy.actions   , easy.viz) 
+leveneTest(medium.actions , medium.viz)
+leveneTest(hard.actions   , hard.viz)   
+leveneTest(easy.accuracy  , easy.viz)   
+leveneTest(medium.accuracy, medium.viz) 
+leveneTest(hard.accuracy  , hard.viz)   
 
 speed.easy.anova      <- aov(easy.speed      ~ easy.viz,   data=df.speed.easy)
 speed.medium.anova    <- aov(medium.speed    ~ medium.viz, data=df.speed.medium)
@@ -468,8 +478,6 @@ t2.detailed  <- c(mean(charts.boxplot.easy$ls.accuracy), mean(charts.boxplot.eas
 t2.compact   <- c(mean(dots.boxplot.easy$ls.accuracy)  , mean(dots.boxplot.easy$ls.speed),   mean(dots.boxplot.easy$ls.actions),   mean(dots.boxplot.medium$ls.accuracy),   mean(dots.boxplot.medium$ls.speed),   mean(dots.boxplot.medium$ls.actions  ), mean(dots.boxplot.hard$ls.accuracy),   mean(dots.boxplot.hard$ls.speed),   mean(dots.boxplot.hard$ls.actions  ))
 
 table2 <- data.frame(t2.aspect, t2.intuitive, t2.detailed, t2.compact)
-
-
 
 
 e.acc.int <- conf.interval(series.boxplot.easy$ls.accuracy)

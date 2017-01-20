@@ -18,9 +18,9 @@ require(miscTools)
 # study.dots   <- read.csv("data/s2_dots.csv")
 # study.charts <- read.csv("data/s2_charts.csv")
 # study.series <- read.csv("data/s2_series.csv")
-s2.qf.charts   <- read.csv("data/qf2_charts.csv")
-s2.qf.dots     <- read.csv("data/qf2_dots.csv")
-s2.qf.series   <- read.csv("data/qf2_series.csv")
+# s2.qf.charts   <- read.csv("data/qf2_charts.csv")
+# s2.qf.dots     <- read.csv("data/qf2_dots.csv")
+# s2.qf.series   <- read.csv("data/qf2_series.csv")
 
 #### Second Study
 s2.series.boxplot.easy   <- read.csv("data/blastprocessed/s2.series.boxplot.easy.csv"  )

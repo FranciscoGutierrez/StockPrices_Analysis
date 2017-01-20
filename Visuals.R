@@ -3,7 +3,7 @@ library(reshape2)
 library(car)
 
 conf.interval <- function(data) {
-    data <- t.test(data)
+    data   <- t.test(data)
     mean   <- data$estimate
     min    <- data$conf.int[1]
     max    <- data$conf.int[2]
