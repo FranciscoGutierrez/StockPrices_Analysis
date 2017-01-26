@@ -1,23 +1,23 @@
-data <- read.csv("output2.csv") 
+data <- read.csv("output2.csv")
 
-split.data <- split(data, data$userid) 
+split.data <- split(data, data$userid)
 
 ls.names     <- c()
-ls.questions <- c() 
-ls.correct   <- c() 
-ls.viz       <- c() 
-ls.payment   <- c() 
+ls.questions <- c()
+ls.correct   <- c()
+ls.viz       <- c()
+ls.payment   <- c()
 ls.timestamp <- c()
 #  Check users and questions
 for (user in split.data) {
-    user.subset  <- subset(user, 
+    user.subset  <- subset(user,
                            select = c("userid"  ,
                                       "question",
                                       "correct" ,
                                       "viz"))
     user.ordered       <- user.subset[order(user.subset$question),]
     # Prepare output
-    user.num.questions <- 0 
+    user.num.questions <- 0
     user.num.correct   <- 0
     user.payment       <- 0.5
     user.id            <- user$userid[1]
@@ -29,7 +29,7 @@ for (user in split.data) {
         if (user$correct[i] == "true") user.num.correct  <- user.num.correct + 1
     }
     if (user.num.correct > 7 ) user.payment <- 1.5
-    if (user.num.correct > 10) user.payment <- 3.0 
+    if (user.num.correct > 10) user.payment <- 3.0
     # output
     # checking if this is the latest study...
     if (user.timestamp > 1476000000000) {
@@ -43,8 +43,8 @@ for (user in split.data) {
 }
 
 # create a dataframe for the output
-output <- data.frame(ls.names,            
-                     ls.viz,            
+output <- data.frame(ls.names,
+                     ls.viz,
                      ls.questions,
                      ls.timestamp,
                      ls.correct,
